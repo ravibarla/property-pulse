@@ -14,7 +14,7 @@ function Navbar() {
 
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const pathname = usePathname();
-  console.log("pathname :", pathname);
+  // console.log("pathname :", pathname);
   return (
     <nav className="bg-blue-700 border-b border-blue-500">
       <div className="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
