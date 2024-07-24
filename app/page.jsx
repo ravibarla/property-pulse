@@ -1,7 +1,8 @@
 import Hero from "@/components/Hero";
 import InfoBoxes from "@/components/InfoBoxes";
 import HomeProperties from "@/components/HomeProperties";
-function Homepage() {
+
+const Homepage = () => {
   return (
     <>
       <Hero />
@@ -9,6 +10,6 @@ function Homepage() {
       <HomeProperties />
     </>
   );
-}
+};
 
 export default Homepage;
