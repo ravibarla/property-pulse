@@ -1,3 +1,4 @@
+
 import React from "react";
 import connectDB from "@/config/database";
 import Property from "@/models/Property";
