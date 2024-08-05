@@ -4,6 +4,7 @@ import Property from "@/models/Property";
 import getSessionUser from "@/utils/getSessionUser";
 import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
+import cloudinary from "@/config/cloudinary";
 async function addProperty(formData) {
   await connectDB();
   const sessionUser = await getSessionUser();
@@ -12,11 +13,9 @@ async function addProperty(formData) {
   }
   const { userId } = sessionUser;
   //access all amenities and images
-  const ameninties = formData.getAll("amenities");
-  const images = formData
-    .getAll("images")
-    .filter((image) => image.name !== "")
-    .map((image) => image.name);
+  const amenities = formData.getAll("amenities");
+  const images = formData.getAll("images").filter((image) => image.name !== "");
+
   const propertyData = {
     owner: userId,
     type: formData.get("type"),
@@ -31,7 +30,7 @@ async function addProperty(formData) {
     beds: formData.get("beds"),
     baths: formData.get("baths"),
     square_feet: formData.get("square_feet"),
-    ameninties,
+    amenities,
     rates: {
       weekly: formData.get("rates.weekly"),
       nightly: formData.get("rates.nightly"),
@@ -42,8 +41,24 @@ async function addProperty(formData) {
       email: formData.get("sellor_info.email"),
       phone: formData.get("sellor_info.phone"),
     },
-    images,
   };
+  const imageUrls = [];
+  for (const imageFile of images) {
+    const imageBuffer = await imageFile.arrayBuffer();
+    const imageArray = Array.from(new Uint8Array(imageBuffer));
+    const imageData = Buffer.from(imageArray);
+    //convert to base 64
+    const imageBase64 = imageData.toString("base64");
+    //make request to cloudinary
+    const result = await cloudinary.uploader.upload(
+      `data:image/png;base64,${imageBase64}`,
+      {
+        folder: "propertypulse",
+      }
+    );
+    imageUrls.push(result.secure_url);
+  }
+  propertyData.images = imageUrls;
   // console.log("propertyData :", propertyData);
   const newProperty = new Property(propertyData);
   await newProperty.save();
