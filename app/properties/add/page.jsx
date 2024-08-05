@@ -1,27 +1,21 @@
+import PropertyAddForm from "@/components/PropertyAddForm";
 import PropertyCard from "@/components/PropertyCard";
 import connectDB from "@/config/database";
-import Property from "@/models/Property";
+import Property from "@/models/Property"; 
 // import properties from "@/properties.json"
 import React from "react";
 
-const PropertyAddPage=async()=> {
-  await connectDB()
-  const properties =await Property.find({}).lean()
+const AddPropertyPage=async()=> {
   return (
-    <section className="px-4 py-6">
-      <div className="container-xl lg:container m-auto px-4 py-6">
-        {properties.length === 0 ? (
-          <p>No properties found</p>
-        ) : (
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            {properties.map((property) => (
-              <PropertyCard key={property._id} property={property} />
-            ))}
-          </div>
-        )}
-      </div>
+   
+    <section className="bg-blue-50">
+        <div className="container m-auto max-w-2xl py-24">
+            <div className="bg-white px-6 py-8 mb-4 shadow-md rounded-md border m-4 md:m-0 ">
+              <PropertyAddForm/>
+            </div>
+        </div>
     </section>
   );
 }
 
-export default PropertyAddPage;
+export default AddPropertyPage;
