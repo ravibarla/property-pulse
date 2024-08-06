@@ -1,10 +1,10 @@
 import React from "react";
 import Image from "next/image";
-function PropertyImages() {
+function PropertyImages({images}) {
   return (
     <section className="bg-blue-50 p-4">
       <div className="container mx-auto">
-        {image.length === 1 ? (
+        {images.length === 1 ? (
           <Image
             src={images[0]}
             alt=""
@@ -19,7 +19,7 @@ function PropertyImages() {
               <div
                 key={index}
                 className={`${
-                  images.length === 3 && index === 2
+                  image.length === 3 && index === 2
                     ? "col-span-2"
                     : "col-span-1"
                 }`}
