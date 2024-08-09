@@ -3,6 +3,7 @@ import { useState } from "react";
 import React from "react";
 import Image from "next/image";
 import Link from "next/link";
+
 function ProfileProperty({ properties: initialProperty }) {
   const [properties, setProperties] = useState(initialProperty);
   return properties.map((property) => (
@@ -26,7 +27,11 @@ function ProfileProperty({ properties: initialProperty }) {
       </div>
       <div className="mt-2">
         <a
+<<<<<<< HEAD
           href="/add-property.html"
+=======
+          href={`/properties/${property._id}/edit`}
+>>>>>>> d6de471fc026caa3635d0ac0db2696ed3052ea28
           className="bg-blue-500 text-white px-3 py-3 rounded-md mr-2 hover:bg-blue-600"
         >
           Edit
@@ -34,6 +39,10 @@ function ProfileProperty({ properties: initialProperty }) {
         <button
           className="bg-red-500 text-white px-3 py-2 rounded-md hover:bg-red-600"
           type="button"
+<<<<<<< HEAD
+=======
+          onClick={() => handleDelete(property._id)}
+>>>>>>> d6de471fc026caa3635d0ac0db2696ed3052ea28
         >
           Delete
         </button>
