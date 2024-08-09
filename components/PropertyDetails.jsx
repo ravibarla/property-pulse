@@ -1,5 +1,15 @@
 import React from "react";
-import { FaBath, FaBed, FaCheck, FaCross, FaMap, FaMapMarker, FaRulerCombined, FaTimes } from "react-icons/fa";
+import {
+  FaBath,
+  FaBed,
+  FaCheck,
+  FaCross,
+  FaMap,
+  FaMapMarker,
+  FaRulerCombined,
+  FaTimes,
+} from "react-icons/fa";
+import PropertyMap from "./PropertyMap";
 
 function PropertyDetails({ property }) {
   {
@@ -59,15 +69,15 @@ function PropertyDetails({ property }) {
         <h3 className="text-lg font-bold mb-6">Description & Details</h3>
         <div className="flex justify-center gap-4 text-blue-500 mb-4 text-xl space-x-9">
           <p>
-            <FaBed className="fa-solid fa-bed" />{property.beds}{' '}
-            <span className="hidden sm:inline">Beds</span>
+            <FaBed className="fa-solid fa-bed" />
+            {property.beds} <span className="hidden sm:inline">Beds</span>
           </p>
           <p>
-            <FaBath className="fa-solid fa-bath" /> {property.baths}{' '}
+            <FaBath className="fa-solid fa-bath" /> {property.baths}{" "}
             <span className="hidden sm:inline"> Baths</span>
           </p>
           <p>
-            <FaRulerCombined className="fa-solid fa-ruler-combined"/>
+            <FaRulerCombined className="fa-solid fa-ruler-combined" />
             {property.square_feet}{" "}
             <span className="hidden sm:inline">sqft</span>
           </p>
@@ -93,7 +103,7 @@ function PropertyDetails({ property }) {
         </ul>
       </div>
       <div className="bg-white p-6 rounded-lg shadow-md mt-6">
-        <div id="map"></div>
+        <PropertyMap property={property} />
       </div>
     </main>
   );
