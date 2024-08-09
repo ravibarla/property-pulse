@@ -7,14 +7,13 @@ import Link from "next/link";
 import PropertyDetails from "@/components/PropertyDetails";
 import PropertyImages from "@/components/PropertyImages";
 import { convertToSerializableObject } from "@/utils/convertToObject";
-<<<<<<< HEAD
+
 
 import ShareButtons from "@/components/ShareButtons";
 import PropertyContactForm from "@/components/PropertyContactForm";
 import BookmarkButton from "@/components/BookmarkButton";
 
-=======
->>>>>>> d6de471fc026caa3635d0ac0db2696ed3052ea28
+
 const PropertyDynamicPage = async ({ params }) => {
   await connectDB();
   const propertyDocs = await Property.findById(params.id).lean();
