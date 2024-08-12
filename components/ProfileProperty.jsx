@@ -3,9 +3,31 @@ import { useState } from "react";
 import React from "react";
 import Image from "next/image";
 import Link from "next/link";
+import deleteProperty from "@/app/actions/deleteProperty";
+import { toast } from "react-toastify";
 
 function ProfileProperty({ properties: initialProperty }) {
   const [properties, setProperties] = useState(initialProperty);
+  const handleDeleteProperty = async (propertyId) => {
+    const confirmed = window.confirm(
+      'Are you sure you want to delete this property?'
+    );
+
+    if (!confirmed) return;
+
+    const deletePropertyById = deleteProperty.bind(null, propertyId);
+
+    await deletePropertyById();
+
+    toast.success('Property Deleted');
+
+    const updatedProperties = properties.filter(
+      (property) => property._id !== propertyId
+    );
+
+    setProperties(updatedProperties);
+  };
+
   return properties.map((property) => (
     <div key={property._id} className="mb-10">
       <Link href={`/properties/${property._id}`}>
@@ -35,7 +57,7 @@ function ProfileProperty({ properties: initialProperty }) {
         <button
           className="bg-red-500 text-white px-3 py-2 rounded-md hover:bg-red-600"
           type="button"
-          onClick={() => handleDelete(property._id)}
+          onClick={() => handleDeleteProperty(property._id)}
         >
           Delete
         </button>
