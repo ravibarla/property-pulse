@@ -25,15 +25,11 @@ const MessageSchema = new Schema(
       type: String,
       required: [true, "Email is required"],
     },
-
-    phone: {
-      type: String,
-    },
-    body: {
-      read: {
-        type: Boolean,
-        default: false,
-      },
+    phone: String,
+    body: String,
+    read: {
+      type: Boolean,
+      default: false,
     },
   },
   {
@@ -41,6 +37,6 @@ const MessageSchema = new Schema(
   }
 );
 
-const Message = models.Message || model("User", MessageSchema);
+const Message = models.Message || model("Message", MessageSchema);
 
 export default Message;

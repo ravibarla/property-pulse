@@ -8,6 +8,7 @@ import {
   FaMoneyBill,
   FaMapMarker,
 } from "react-icons/fa";
+
 const PropertyCard = ({ property }) => {
   const getrateDisplay = () => {
     const { rates } = property;

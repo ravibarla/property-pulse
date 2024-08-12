@@ -4,7 +4,9 @@ import Navbar from "@/components/Navbar.jsx";
 import Footer from "@/components/Footer";
 import AuthProvider from "@/components/AuthProvider";
 import { ToastContainer } from "react-toastify";
-import 'react-toastify/dist/ReactToastify.css';
+import { GlobalProvider } from "@/context/GobalContext";
+// import 'react-toastify/dist/ReactToastify.css';
+import "react-toastify/dist/ReactToastify.min.css";
 export const metadata = {
   title: "PropertyPulse|Find the perfect rental",
   description: "find your dream rental property",
@@ -14,14 +16,16 @@ export const metadata = {
 const Mainlayout = ({ children }) => {
   return (
     <AuthProvider>
-      <html lang="en">
-        <body>
-          <Navbar />
-          <main>{children}</main>
-          <Footer />
-          <ToastContainer />
-        </body>
-      </html>
+      <GlobalProvider>
+        <html lang="en">
+          <body>
+            <Navbar />
+            <main>{children}</main>
+            <Footer />
+            <ToastContainer />
+          </body>
+        </html>
+      </GlobalProvider>
     </AuthProvider>
   );
 };
